@@ -1,22 +1,43 @@
-.App {
+@import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
+* {
+  font-family: 'Nunito', sans-serif;
+}
+
+h3 {
+  font-family: 'nunito';
+  font-size: 32px;
+  line-height: 32px;
+  letter-spacing: -0.6px;
+  font-weight: bold;
+  color: #292929;
+}
+
+h6 {
+  font-family: 'nunito';
   text-align: center;
+  letter-spacing: -0.6px;
+  color: #808285;
+  font-weight: bold;
 }
 
-.App-logo {
-  height: 40vmin;
+input {
+  font-family: 'nunito';
+  border-radius: 25px !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+input:focus {
+  outline: none;
+  color: #495057;
+  background-color: #fff;
+  border: 1px solid #ced4da !important;
+  outline: 0;
+  box-shadow: none !important;
 }
 
-.App-link {
-  color: #09d3ac;
+.switch-wrapper {
+  position: relative;
+}
+
+.switch-wrapper>div {
+  position: relative;
 }
