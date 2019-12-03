@@ -38,6 +38,7 @@ body {
     background-color: #fff;
     /* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1), 0 0 5px 0 rgba(0, 0, 0, .1); */
     box-shadow: 4px 2px 13px 0 #d8d8d8;
+    z-index: -1;
 }
 
 .bottom-menu h6 {

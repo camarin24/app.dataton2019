@@ -11,7 +11,7 @@ export default class Collapse extends Component {
         return (
             <Card className="collapse-card">
                 <Card.Header>Cuentas de ahorros y corriente</Card.Header>
-                <Card.Body>This is some text within a card body.</Card.Body>
+                {/* <Card.Body>This is some text within a card body.</Card.Body> */}
             </Card>
         );
     }
