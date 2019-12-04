@@ -1,3 +1,7 @@
+.bg{
+    background: #fefefe !important;
+}
+
 .top-menu {
     background-color: #fff;
     /* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1), 0 0 5px 0 rgba(0, 0, 0, .1); */
@@ -16,4 +20,26 @@
     margin-top: 2rem;
     box-shadow: 2px 2px 10px 0 #d8d8d8;
     border-radius: 5px;
+}
+
+.product-bar{
+    margin-top: 0px !important;
+    background: #00448d;
+    color: #fff !important;
+}
+
+.product-bar h6{
+    margin: 0px !important;
+    color: #fff !important;
+}
+
+p{
+    font-size: 14px;
+}
+.bold{
+    font-weight: 700 !important;
+}
+
+.blue{
+    color: #00448d;
 }

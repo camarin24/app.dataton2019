@@ -1,6 +1,5 @@
-import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import { AnimatedSwitch } from 'react-router-transition';
-import { Route, Switch, } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Login from './login/login'
 import Home from './home/home';
 import React from 'react';

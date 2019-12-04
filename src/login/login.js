@@ -1,6 +1,5 @@
 import InputGroup from 'react-bootstrap/InputGroup'
 import LoadingOverlay from 'react-loading-overlay'
-import OverlayLoader from 'react-overlay-loading/lib/OverlayLoader'
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
@@ -18,10 +17,13 @@ export default class Login extends Component {
     }
 
     login = () => {
-        this.setState({  isActive: true })
-        setTimeout(() => {
-            this.setState({ loged: true, isActive: true })
-        }, 2000)
+        this.setState({ isActive: true })
+        fetch(`https://j2pc3dwyx4.execute-api.us-east-2.amazonaws.com/TEST/${Math.floor((Math.random() * 10000) + 1)}`)
+            .then(res => res.json())
+            .then(res => {
+                sessionStorage.setItem("user", JSON.stringify(res))
+                this.setState({ loged: true, isActive: true })
+            })
     }
 
     render() {
@@ -74,30 +76,6 @@ export default class Login extends Component {
                             <Col xs="1" />
                         </Row>
 
-                    </Container>
-                    <Container className="mt-3 fixed-bottom bottom-menu text-center">
-                        <Row >
-                            <Col className="p-2">
-                                <Image src={process.env.PUBLIC_URL + '/img/localizacion.svg'} fluid />
-                                <h6>Localizanos</h6>
-                            </Col>
-                            <Col className="p-2">
-                                <Image src={process.env.PUBLIC_URL + '/img/mensaje.svg'} fluid />
-                                <h6>Chat</h6>
-                            </Col>
-                            <Col className="p-2">
-                                <Image src={process.env.PUBLIC_URL + '/img/movil.svg'} fluid />
-                                <h6>Llámanos</h6>
-                            </Col>
-                            <Col className="p-2">
-                                <Image src={process.env.PUBLIC_URL + '/img/audifonos.svg'} fluid />
-                                <h6>Te llamamos</h6>
-                            </Col>
-                            <Col className="p-2">
-                                <Image src={process.env.PUBLIC_URL + '/img/altavoz.svg'} fluid />
-                                <h6>Por redes</h6>
-                            </Col>
-                        </Row>
                     </Container>
                 </LoadingOverlay>
             </div>
