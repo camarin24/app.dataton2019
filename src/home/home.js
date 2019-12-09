@@ -1,18 +1,19 @@
 import Container from 'react-bootstrap/Container'
+import Collapse from '../components/collapse';
+import { Redirect } from 'react-router-dom'
 import Image from 'react-bootstrap/Image'
 import React, { Component } from 'react';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import './home.css'
-import Collapse from '../components/collapse';
-import { string } from 'prop-types';
 
 export default class Home extends Component {
 
   state = {
     user: null,
     random_user: {},
-    ip: 0
+    ip: 0,
+    ar: false
   }
 
   componentDidMount() {
@@ -44,9 +45,14 @@ export default class Home extends Component {
     window.location.href = "/"
   }
 
+  ar = () => {
+    this.setState({ ar: true })
+  }
+
   render() {
     return (
       <div>
+        {this.state.ar && <Redirect to="/ar" />}
         <Container className="bg">
           <Row className="top-menu">
             <Col xs="2" />
@@ -82,6 +88,14 @@ export default class Home extends Component {
           </Row>
 
         </Container>
+
+        <Container>
+          <a href="#" onClick={this.ar} className="float d-flex align-items-center">
+            <i>
+              <Image src={process.env.PUBLIC_URL + '/img/camera.svg'} fluid></Image>
+            </i>
+          </a>
+        </Container>
         <Container className="mt-3 fixed-bottom bottom-menu text-center">
           <Row >
             <Col className="p-2">
@@ -106,6 +120,7 @@ export default class Home extends Component {
             </Col>
           </Row>
         </Container>
+
       </div>
     )
   }

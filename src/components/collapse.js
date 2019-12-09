@@ -8,7 +8,8 @@ export default class Collapse extends Component {
     state = { collapse: true, products: [] }
 
     componentDidMount() {
-        this.setState({ products: JSON.parse(sessionStorage.getItem("user")).products })
+        const products = JSON.parse(sessionStorage.getItem("user")).products;
+        this.setState({ products: products.filter(m => m !== "Sin producto") })
     }
 
     toggle = () => {

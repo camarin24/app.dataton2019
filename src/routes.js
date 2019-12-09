@@ -2,6 +2,7 @@ import { AnimatedSwitch } from 'react-router-transition';
 import { Route } from 'react-router-dom';
 import Login from './login/login'
 import Home from './home/home';
+import AR from './ar/ar';
 import React from 'react';
 
 export default () => {
@@ -13,6 +14,7 @@ export default () => {
             className="switch-wrapper">
             <Route exact path="/" component={Login} />
             <Route exact path="/home" component={Home} />
+            <Route exact path="/ar" component={AR} />
         </AnimatedSwitch>
     );
 };

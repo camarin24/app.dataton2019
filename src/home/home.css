@@ -1,4 +1,4 @@
-.bg{
+.bg {
     background: #fefefe !important;
 }
 
@@ -22,24 +22,45 @@
     border-radius: 5px;
 }
 
-.product-bar{
+.product-bar {
     margin-top: 0px !important;
     background: #00448d;
     color: #fff !important;
 }
 
-.product-bar h6{
+.product-bar h6 {
     margin: 0px !important;
     color: #fff !important;
 }
 
-p{
+p {
     font-size: 14px;
 }
-.bold{
+
+.bold {
     font-weight: 700 !important;
 }
 
-.blue{
+.blue {
     color: #00448d;
+}
+
+.float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 80px;
+    right: 21px;
+    background-color: #ffd300;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #d8d8d8;
+}
+
+.float img {
+    width: 50%;
+}
+
+.my-float {
+    margin-top: 22px;
 }

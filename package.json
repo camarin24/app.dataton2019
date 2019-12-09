@@ -12,7 +12,10 @@
     "react-overlay-loading": "^1.0.3",
     "react-router-dom": "^5.1.2",
     "react-router-transition": "^2.0.0",
-    "react-scripts": "3.2.0"
+    "react-scripts": "3.2.0",
+    "react-web-ar": "^1.0.0-beta0",
+    "three": "^0.111.0",
+    "threex": "^1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

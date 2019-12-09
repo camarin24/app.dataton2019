@@ -1,4 +1,3 @@
-import InputGroup from 'react-bootstrap/InputGroup'
 import LoadingOverlay from 'react-loading-overlay'
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
