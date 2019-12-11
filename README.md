@@ -28,17 +28,12 @@ Posteriormente realizamos una revisión rápida de las características (columna
 
  
 
-●  	¿Cuánto es el máximo valor realizado para un cliente en una transacción durante el tiempo que se esta analizando, y cómo se comporta este valor con respecto al promedio de los otros clientes?
-
-●  	¿Cuáles eran los productos que más sesiones tenían en cada uno de lo clientes?
-
-●  	¿Cuáles eran los tiempos (horas, días, minutos, etc.) donde mas se conectaban las personas?
-
-●  	¿Cuáles eran los canales y dispositivos que mas usaban las personas?
-
-●      ¿Existe una correlación entre las cantidades de transacciones fallidas y la culpa del banco en estas transacciones para determinar el incumplimiento del pago del producto crediticio?
-
-●      ¿Podemos usar todas estas características y correlacionarlas de alguna manera con la segmentación inicial que realizo el banco para extraer mas valor de estas columnas?
+ - ¿Cuánto es el máximo valor realizado para un cliente en una transacción durante el tiempo que se esta analizando, y cómo se comporta este valor con respecto al promedio de los otros clientes?
+ - ¿Cuáles eran los productos que más sesiones tenían en cada uno de lo clientes?
+ - ¿Cuáles eran los tiempos (horas, días, minutos, etc.) donde mas se conectaban las personas?
+ - ¿Cuáles eran los canales y dispositivos que mas usaban las personas?
+ -¿Existe una correlación entre las cantidades de transacciones fallidas y la culpa del banco en estas transacciones para determinar el incumplimiento del pago del producto crediticio?
+ - ¿Podemos usar todas estas características y correlacionarlas de alguna manera con la segmentación inicial que realizo el banco para extraer mas valor de estas columnas?
 
 **Primera aproximación a los datos (data collection and EDA)**
 
@@ -48,21 +43,15 @@ El siguiente paso fue cargar y pre-procesar los tres conjuntos de datos que pres
 
  Es importante comentar que, dado el alto volumen de datos, evaluamos el uso de dos posibles soluciones:
 
- 
-
-·      Cargar y procesar los datos a través de técnicas de "big data" usando el entrono de Spark  en plataformas como Databricks.
-
-·      Crear una maquina virtual de EC2 , el servicio de computación en la nube de Amazon Web Services.
+  - Cargar y procesar los datos a través de técnicas de "big data" usando el entrono de Spark  en plataformas como Databricks.
+  - Crear una maquina virtual de EC2 , el servicio de computación en la nube de Amazon Web Services.
 
  
-
 Luego de probar las dos alternativas encontramos que la decisión más práctica era trabajar con la maquina virtual, ya que, aunque se contaba con una gran cantidad de registros, no tenían el suficiente volumen para impedir su procesamiento de manera práctica y eficiente en un entorno virtual tradicional, guardando los resultados en archivos tipo "pickle", los cuales ofrecen una excelente velocidad de guardado y de cargado.
 
- 
 
 Luego de cargar los datos, se procedió a realizar un pre-procesado básico, el cual buscaba extraer información de las fechas como el año, mes, día, semana del año, horas y segundos, de los datos transaccionales.
 
- 
 
 Para realizar el EDA usamos una librería de Python llamada "pandas_profiling", la cual se encarga de generar un informe analizando cada una de las variables, valores faltantes y correlación entre variables. El informe puede ser observado en la siguiente pagina y en los anexos: [https://camarin24.github.io/app.dataton2019/](https://camarin24.github.io/app.dataton2019/)
 
@@ -70,15 +59,10 @@ Para realizar el EDA usamos una librería de Python llamada "pandas_profiling", 
 
 Posteriormente comenzamos un primer análisis de los datos que teníamos, entendiendo factores claves como:
 
- 
-
-●  	Cuántos casos se presentan de las dos categorías de la variable objetivo (pago-impago) y cual es la proporción de estos datos
-
-●  	Investigamos las distribuciones para variables como el segmento de los dos grupos, observando que sí existían distribuciones características para cada una de las variables.
-
-●  	Encontramos datos claves como concurrencia por año, meses, etc.
-
-●  	Graficamos la matriz de correlación de las variables, observando que ninguna de las características hasta ahora presentaba alta correlación con la variable objetivo.
+ - Cuántos casos se presentan de las dos categorías de la variable objetivo (pago-impago) y cual es la proporción de estos datos
+ - Investigamos las distribuciones para variables como el segmento de los dos grupos, observando que sí existían distribuciones características para cada una de las variables.
+ - Encontramos datos claves como concurrencia por año, meses, etc.
+ - Graficamos la matriz de correlación de las variables, observando que ninguna de las características hasta ahora presentaba alta correlación con la variable objetivo.
 
  
 
@@ -92,11 +76,7 @@ Este primer paso creó un poco más de 1000 columnas nuevas. Continuamos calcula
 
  
 
-Además, como observamos en el EDA, la variable segmento podría presentar una gran cantidad de información, pero de acuerdo con la explicación recibida, estos valores no tenían un carácter jerárquico, por lo que decidimos convertir cada uno de los segmentos en una columna aparte, a través de la técnica conocida como "one hot encoding".
-
- 
-
- 
+Además, como observamos en el EDA, la variable segmento podría presentar una gran cantidad de información, pero de acuerdo con la explicación recibida, estos valores no tenían un carácter jerárquico, por lo que decidimos convertir cada uno de los segmentos en una columna aparte, a través de la técnica conocida como "one hot encoding". 
 
 **Modelado inicial**
 
@@ -112,15 +92,11 @@ Pero para esto necesitamos escoger cual o cuales iban a ser nuestros modelos, po
 
 Se realizo una evaluación inicial del modelo, con los híper-parámetros por defecto, obteniendo que las variables creadas si presentaban aporte de información al modelo, ya que el resultado de la evaluación cruzada fue superior al "baseline" del modelo. Además, quisimos aprovechar el peso que le da el método a cada una de las variables para entender mejor de donde éste obtenía información valiosa, y cómo estos valores nos podían ayudar a crear nuevas variables. Esto nos permitió generar nuevas hipótesis como:
 
-●      ¿Qué tanta diferencia existe entre la fecha de la ultima transacción con respecto al momento en que se tomo el producto crediticio?
-
-●       Si identificamos la importancia de los segmentos en el modelo, ¿podemos crear otra segmentación con las nuevas variables creadas?
-
-●     ¿Cómo entregarle al modelo información sobre la incidencia de los dos tipos de sucesos?
-
-●     ¿Puede ser el "mean encoding" una técnica útil para dar mayor importancia a la segmentación del modelo?
-
-●     ¿Si eliminamos las variables que le aportan poca información al modelo, éste mejorara su rendimiento?
+ - ¿Qué tanta diferencia existe entre la fecha de la ultima transacción con respecto al momento en que se tomo el producto crediticio?
+ - Si identificamos la importancia de los segmentos en el modelo, ¿podemos crear otra segmentación con las nuevas variables creadas
+ - ¿Cómo entregarle al modelo información sobre la incidencia de los dos tipos de sucesos?
+ - ¿Puede ser el "mean encoding" una técnica útil para dar mayor importancia a la segmentación del modelo?
+ - ¿Si eliminamos las variables que le aportan poca información al modelo, éste mejorara su rendimiento?
 
 ** **
 
