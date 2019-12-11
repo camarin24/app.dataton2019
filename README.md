@@ -4,9 +4,9 @@
 
 En nuestro equipo creemos fuertemente en tres valores principales, el primero es que el uso de cualquier tecnologia, llamese desarrollo de software, machine learning, inteligencia artifical, realidad virtual, entre otras; deben estar enfocadas cien por ciento en las personas, enfocadas en brindar mayores oportunidades y bienestar a estas; el segundo es que el valor esta en el uso, por lo que cualquier solución que este enfocada en el primer valor debe ser funcional, asequible y accesible; y el ultimo valor en el que creemos firmemente es que para lograr los otros dos valores todas los proyectos y soluciones deben ser desarrollados por equipos multiculturales y multidisciplinarios.
 
-Con estos valores en mente, nace el proyecto **BanCOLOMBIA sin fronteras, **el cual busca a traves del uso de tecnologias exponenciales aprovechar los datos adquiridos por la compañia para llevar igualdad en oportunidades a todos los ciudadanos de Colombia a traves del otorgamiento de un voto de confianza que se puede convertir en una oportunidad que lograra cambiar miles de vidas y llevarnos a un país mas justo y equitativo. Teniendo presente que el modelo es una parte crucial y critica del proyecto, pero que el despliege y uso del mismo definiran su verdadero valor e impacto en el mundo.
+Con estos valores en mente, nace el proyecto **BanCOLOMBIA sin fronteras**, el cual busca a traves del uso de tecnologias exponenciales aprovechar los datos adquiridos por la compañia para llevar igualdad en oportunidades a todos los ciudadanos de Colombia a traves del otorgamiento de un voto de confianza que se puede convertir en una oportunidad que lograra cambiar miles de vidas y llevarnos a un país mas justo y equitativo. Teniendo presente que el modelo es una parte crucial y critica del proyecto, pero que el despliege y uso del mismo definiran su verdadero valor e impacto en el mundo.
 
-**Modelo**** **
+**Modelo**
 
 El proyecto fue estructurado y desarrollado bajo la metodología para proyectos de ciencia de datos conocida como "data science project lifecycle"; la cual nos entregó un marco de referencia para poder explorar y desarrollar de forma exitosa el proyecto.
 
@@ -199,10 +199,4 @@ Fig 1: Matriz de correlación variables con mayor explicabilidad
 ![image alt text](docs/image_3.png)
 
 Fig 2: Pairplot variables con mayor explicabilidad
-
-![image alt text](docs/image_4.png)
-
-![image alt text](docs/image_5.png)
-
-Para el desarrollo de esta idea utilizamos React u
 
