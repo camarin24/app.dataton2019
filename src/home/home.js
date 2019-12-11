@@ -5,6 +5,7 @@ import Image from 'react-bootstrap/Image'
 import React, { Component } from 'react';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Chart from 'react-apexcharts'
 import './home.css'
 
 export default class Home extends Component {
@@ -13,7 +14,8 @@ export default class Home extends Component {
     user: null,
     random_user: {},
     ip: 0,
-    ar: false
+    ar: false,
+    statistics: false
   }
 
   componentDidMount() {
@@ -79,15 +81,73 @@ export default class Home extends Component {
             </Col>
             <Col xs="1" />
           </Row>
-          <Row>
-            <Col >
-              <div className="products-container">
-                <Collapse></Collapse>
-              </div>
-            </Col>
-          </Row>
-
+          
+          {!this.state.statistics ?
+            <div>
+              <Row>
+                <Col >
+                  <div className="products-container">
+                    <Collapse></Collapse>
+                  </div>
+                </Col>
+              </Row>
+            </div> :
+            <div>
+              <Row>
+                <Col>
+                  <Chart
+                    options={{
+                      fill: { colors: ['#284182'] }, legend: { show: false },
+                      grid: { show: true, borderColor: 'rgba(0, 0, 0, 0.1)', yaxis: { lines: { show: true } } },
+                      xaxis: { tooltip: { enabled: false }, axisBorder: { show: false }, axisTicks: { show: true } },
+                      yaxis: { labels: { show: false }, forceNiceScale: true },
+                      chart: { animations: { enabled: false }, toolbar: { show: false } }
+                    }}
+                    type={'bar'}
+                    width={'100%'}
+                    series={[{ name: 'month', data: this.state.random_user.monthstats }]}
+                    height={'200px'}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col >
+                  <Chart
+                    options={{
+                      fill: { colors: ['#F4D113'] }, legend: { show: false },
+                      grid: { show: true, borderColor: 'rgba(0, 0, 0, 0.1)', yaxis: { lines: { show: true } } },
+                      xaxis: { tooltip: { enabled: false }, axisBorder: { show: false }, axisTicks: { show: true } },
+                      yaxis: { labels: { show: false }, forceNiceScale: true },
+                      chart: { animations: { enabled: false }, toolbar: { show: false } }
+                    }}
+                    type={'bar'}
+                    width={'100%'}
+                    series={[{ name: 'year', data: this.state.random_user.yearstats }]}
+                    height={'200px'}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col >
+                  <Chart
+                    options={{
+                      fill: { colors: ['#C4202B'] }, legend: { show: false },
+                      grid: { show: true, borderColor: 'rgba(0, 0, 0, 0.1)', yaxis: { lines: { show: true } } },
+                      xaxis: { tooltip: { enabled: false }, axisBorder: { show: false }, axisTicks: { show: true } },
+                      yaxis: { labels: { show: false }, forceNiceScale: true },
+                      chart: { animations: { enabled: false }, toolbar: { show: false } }
+                    }}
+                    type={'bar'}
+                    width={'100%'}
+                    series={[{ name: 'dayOfWeek', data: this.state.random_user.daystats }]}
+                    height={'200px'}
+                  />
+                </Col>
+              </Row>
+            </div>
+          }
         </Container>
+
 
         <Container>
           <a href="#" onClick={this.ar} className="float d-flex align-items-center">
@@ -96,27 +156,16 @@ export default class Home extends Component {
             </i>
           </a>
         </Container>
+
         <Container className="mt-3 fixed-bottom bottom-menu text-center">
           <Row >
-            <Col className="p-2">
+            <Col className="p-2" onClick={(ev) => this.setState({ statistics: false })}>
               <Image src={process.env.PUBLIC_URL + '/img/localizacion.svg'} fluid />
               <h6>Localizanos</h6>
             </Col>
-            <Col className="p-2">
+            <Col className="p-2" onClick={(ev) => this.setState({ statistics: true })}>
               <Image src={process.env.PUBLIC_URL + '/img/mensaje.svg'} fluid />
               <h6>Chat</h6>
-            </Col>
-            <Col className="p-2">
-              <Image src={process.env.PUBLIC_URL + '/img/movil.svg'} fluid />
-              <h6>Llámanos</h6>
-            </Col>
-            <Col className="p-2">
-              <Image src={process.env.PUBLIC_URL + '/img/audifonos.svg'} fluid />
-              <h6>Te llamamos</h6>
-            </Col>
-            <Col className="p-2">
-              <Image src={process.env.PUBLIC_URL + '/img/altavoz.svg'} fluid />
-              <h6>Por redes</h6>
             </Col>
           </Row>
         </Container>
