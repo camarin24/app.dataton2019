@@ -160,11 +160,11 @@ Posteriormente se creó una función Lambda en la misma plataforma, que es consu
 
 **Aplicacion de despliege**
 
-En esta etapa optamos por el desarrollo de una aplicación que nos permitiera contar una historia y ver el resultado de los procesos anteriores utilizando las tecnologías web más reciente. (PWA, AR).
+Para la parte final de exposición y uso real del model optamos por el desarrollo de una aplicación que nos permitiera contar no solo entregar un resultado, si no que a la vez que integramos información valiosa de analitica, experiencia de usuario, y entregamos el
+resultado final de aprobación del crédito de una experiencia novedosa y llamativa utilizando las tecnologías web más reciente. (PWA, AR).
+Esta aplicación fue desarrollada utilizando React cómo framework base ya que permite una gran flexibilidad y velocidad en el desarrollo, además de una correcta integración y visualización tanto en el ambito web como en el mobile.
 
-Esta aplicación  fue desarrollada utilizando React cómo framework base ya que permite una gran flexibilidad y velocidad en el desarrollo y obtiene sus datos mediante el llamado a API’s REST expuestas en AWS.
-
-Adicional,  la aplicación cuenta con la integración de una tecnología extremadamente potente de la WEB cómo lo es el AR.
+Esta aplicación obtiene todos sus datos mediante el llamado a API’s REST expuestas en AWS.Adicional a esto, la aplicación cuenta con la integración de una tecnología extremadamente potente y novedosa de la WEB cómo lo es el realidad aumentada.
 
 **ANEXOS:**
 
