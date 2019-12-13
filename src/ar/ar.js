@@ -18,13 +18,13 @@ export default class AR extends Component {
             antialias: true,
             alpha: true
         });
-        const elem = document.getElementById("ar-body");
+        //const elem = document.getElementById("ar-body");
         renderer.setClearColor(new window.THREE.Color('lightgrey'), 0)
-        renderer.setSize(elem.offsetWidth, elem.offsetHeight);
+        renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.domElement.style.position = 'absolute'
         renderer.domElement.style.top = '0px'
         renderer.domElement.style.left = '0px'
-        elem.appendChild(renderer.domElement);
+        document.body.appendChild(renderer.domElement);
         // array of functions for the rendering loop
         var onRenderFcts = [];
         // init scene and camera
@@ -46,8 +46,8 @@ export default class AR extends Component {
             // sourceUrl : window.THREEx.ArToolkitContext.baseURL + '../data/images/img.jpg',
             // to read from a video
             // sourceType : 'video',
-            displayWidth: elem.offsetWidth,
-            displayHeight: elem.offsetHeight,
+            //displayWidth: elem.offsetWidth,
+            //displayHeight: elem.offsetHeight,
             // sourceUrl : window.THREEx.ArToolkitContext.baseURL + '../data/videos/headtracking.mp4',
         })
         arToolkitSource.init(function onReady() {
@@ -74,8 +74,8 @@ export default class AR extends Component {
             cameraParametersUrl: window.THREEx.ArToolkitContext.baseURL + '../data/data/camera_para.dat',
             detectionMode: 'mono',
             // maxDetectionRate: 30,
-            canvasWidth: elem.offsetWidth,
-            canvasHeight: elem.offsetHeight,
+            //canvasWidth: elem.offsetWidth,
+            //canvasHeight: elem.offsetHeight,
         })
         // initialize it
         arToolkitContext.init(function onCompleted() {
