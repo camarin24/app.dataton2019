@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class Home extends Component {
+export default class AR extends Component {
 
     state = {
         user: null,
@@ -9,18 +9,22 @@ export default class Home extends Component {
     }
 
     componentDidMount() {
+
+
+
         window.THREEx.ArToolkitContext.baseURL = process.env.PUBLIC_URL;
         // init renderer
         var renderer = new window.THREE.WebGLRenderer({
             antialias: true,
             alpha: true
         });
+        const elem = document.getElementById("ar-body");
         renderer.setClearColor(new window.THREE.Color('lightgrey'), 0)
-        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setSize(elem.offsetWidth, elem.offsetHeight);
         renderer.domElement.style.position = 'absolute'
         renderer.domElement.style.top = '0px'
         renderer.domElement.style.left = '0px'
-        document.body.appendChild(renderer.domElement);
+        elem.appendChild(renderer.domElement);
         // array of functions for the rendering loop
         var onRenderFcts = [];
         // init scene and camera
@@ -42,6 +46,8 @@ export default class Home extends Component {
             // sourceUrl : window.THREEx.ArToolkitContext.baseURL + '../data/images/img.jpg',
             // to read from a video
             // sourceType : 'video',
+            displayWidth: elem.offsetWidth,
+            displayHeight: elem.offsetHeight,
             // sourceUrl : window.THREEx.ArToolkitContext.baseURL + '../data/videos/headtracking.mp4',
         })
         arToolkitSource.init(function onReady() {
@@ -52,7 +58,7 @@ export default class Home extends Component {
             onResize()
         })
 
-        
+
         function onResize() {
             arToolkitSource.onResizeElement()
             arToolkitSource.copyElementSizeTo(renderer.domElement)
@@ -67,6 +73,9 @@ export default class Home extends Component {
         var arToolkitContext = new window.THREEx.ArToolkitContext({
             cameraParametersUrl: window.THREEx.ArToolkitContext.baseURL + '../data/data/camera_para.dat',
             detectionMode: 'mono',
+            // maxDetectionRate: 30,
+            canvasWidth: elem.offsetWidth,
+            canvasHeight: elem.offsetHeight,
         })
         // initialize it
         arToolkitContext.init(function onCompleted() {
@@ -78,7 +87,7 @@ export default class Home extends Component {
             if (arToolkitSource.ready === false) return
             arToolkitContext.update(arToolkitSource.domElement)
             // update scene.visible if the marker is seen
-            scene.visible = camera.visible
+            // scene.visible = camera.visible
         })
         ////////////////////////////////////////////////////////////////////////////////
         //          Create a ArMarkerControls
@@ -97,23 +106,57 @@ export default class Home extends Component {
         //		add an object in the scene
         //////////////////////////////////////////////////////////////////////////////////
         // add a torus knot
+
+
         var geometry = new window.THREE.CubeGeometry(1, 1, 1);
-        var material = new window.THREE.MeshNormalMaterial({
-            transparent: true,
-            opacity: 0.5,
-            side: window.THREE.DoubleSide
+        var material = new window.THREE.MeshBasicMaterial({
+            color: '#284182'
         });
-        var mesh = new window.THREE.Mesh(geometry, material);
-        mesh.position.y = geometry.parameters.height / 2
-        scene.add(mesh);
-        var geometry = new window.THREE.TorusKnotGeometry(0.3, 0.1, 64, 16);
-        var material = new window.THREE.MeshNormalMaterial();
-        var mesh = new window.THREE.Mesh(geometry, material);
-        mesh.position.y = 0.5
-        scene.add(mesh);
+        var mesh1 = new window.THREE.Mesh(geometry, material);
+        mesh1.position.y = geometry.parameters.height / 2
+        scene.add(mesh1);
+
+        var geometry = new window.THREE.CubeGeometry(1.3, 1.3, 1.3);
+        var material = new window.THREE.MeshBasicMaterial({
+            color: '#F4D113'
+        });
+        var mesh2 = new window.THREE.Mesh(geometry, material);
+        mesh2.position.y = geometry.parameters.height / 2
+        mesh2.position.z = geometry.parameters.height * 1.4
+        scene.add(mesh2);
+
+        var geometry = new window.THREE.CubeGeometry(0.8, 0.8, 0.8);
+        var material = new window.THREE.MeshBasicMaterial({
+            color: '#C4202B'
+        });
+        var mesh3 = new window.THREE.Mesh(geometry, material);
+        mesh3.position.y = geometry.parameters.height / 2
+        mesh3.position.z = -geometry.parameters.height * 1.6
+        scene.add(mesh3);
+
+
+        let user_name = sessionStorage.getItem('user_name')
+        console.log(user_name);
+        user_name = 'Felcidades ' + user_name + ' te tenemos un crédito por $1.000.000!'
+
+        let sprite = new window.THREE.TextSprite({
+            fillStyle: '#ffffff',
+            fontFamily: '"Helvetica',
+            fontSize: 0.15,
+            fontWeight: 'bold',
+            text: [
+                user_name,
+            ].join('\n'),
+        });
+        sprite.position.y = 1.7
+        scene.add(sprite);
         onRenderFcts.push(function (delta) {
-            mesh.rotation.x += Math.PI * delta
+            mesh1.rotation.y += Math.PI * delta
+            mesh2.rotation.y -= Math.PI * delta
+            mesh3.rotation.y += Math.PI * delta
         })
+
+
         //////////////////////////////////////////////////////////////////////////////////
         //		render the whole thing on the page
         //////////////////////////////////////////////////////////////////////////////////
@@ -142,6 +185,6 @@ export default class Home extends Component {
     }
 
     render() {
-        return (<div />)
+        return (<div id="ar-body" style={{ width: "100vh", height: "100vh" }} />)
     }
 }

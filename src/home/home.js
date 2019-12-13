@@ -24,7 +24,10 @@ export default class Home extends Component {
     fetch("https://randomuser.me/api/")
       .then(res => res.json())
       .then(res => {
-        this.setState({ user: res.results[0] })
+        this.setState({ user: res.results[0] }, () => {
+          const { first, last, title } = this.state.user.name;
+          sessionStorage.setItem("user_name", `${title} ${first} ${last}`.toUpperCase())
+        })
       })
 
     fetch("https://ipapi.co/json/")
@@ -81,7 +84,7 @@ export default class Home extends Component {
             </Col>
             <Col xs="1" />
           </Row>
-          
+
           {!this.state.statistics ?
             <div>
               <Row>
@@ -92,9 +95,10 @@ export default class Home extends Component {
                 </Col>
               </Row>
             </div> :
-            <div>
+            <div style={{marginTop:"2rem"}}>
               <Row>
                 <Col>
+                <h6>Sesiones por mes</h6>
                   <Chart
                     options={{
                       fill: { colors: ['#284182'] }, legend: { show: false },
@@ -110,8 +114,10 @@ export default class Home extends Component {
                   />
                 </Col>
               </Row>
+              <hr></hr>
               <Row>
                 <Col >
+                <h6>Sesiones por año</h6>
                   <Chart
                     options={{
                       fill: { colors: ['#F4D113'] }, legend: { show: false },
@@ -127,8 +133,10 @@ export default class Home extends Component {
                   />
                 </Col>
               </Row>
-              <Row>
+              <hr></hr>
+              <Row className="pb-5">
                 <Col >
+                <h6>Sesiones por día</h6>
                   <Chart
                     options={{
                       fill: { colors: ['#C4202B'] }, legend: { show: false },
@@ -160,12 +168,12 @@ export default class Home extends Component {
         <Container className="mt-3 fixed-bottom bottom-menu text-center">
           <Row >
             <Col className="p-2" onClick={(ev) => this.setState({ statistics: false })}>
-              <Image src={process.env.PUBLIC_URL + '/img/localizacion.svg'} fluid />
-              <h6>Localizanos</h6>
+              <Image src={process.env.PUBLIC_URL + '/img/new-product.svg'} fluid style={{width: "35px"}}/>
+              <h6>Productos</h6>
             </Col>
-            <Col className="p-2" onClick={(ev) => this.setState({ statistics: true })}>
-              <Image src={process.env.PUBLIC_URL + '/img/mensaje.svg'} fluid />
-              <h6>Chat</h6>
+            <Col className="p-2" onClick={(ev) => this.setState({ statistics: true })} >
+              <Image src={process.env.PUBLIC_URL + '/img/laptop.svg'} fluid style={{width: "35px"}}/>
+              <h6>Estadísticas</h6>
             </Col>
           </Row>
         </Container>
